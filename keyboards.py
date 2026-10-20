@@ -1,9 +1,14 @@
 """
-Telegram duwmeleri (ReplyKeyboardMarkup we InlineKeyboardMarkup)
-Daivinchik stilindaki 1, 2, 3, 4 duwmeler
+Telegram duwmeleri: Leonardo Daivinchik + Modern Admin Paneli
 """
 
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+from aiogram.types import (
+    ReplyKeyboardMarkup, 
+    KeyboardButton, 
+    ReplyKeyboardRemove,
+    InlineKeyboardMarkup,
+    InlineKeyboardButton
+)
 
 def gender_keyboard():
     return ReplyKeyboardMarkup(
@@ -36,13 +41,6 @@ def city_keyboard():
     )
 
 def feed_keyboard():
-    """
-    Daivinchik klassik duwmeleri:
-    1 = ❤️ (Like)
-    2 = 💌 (Hat ugratmak)
-    3 = 👎 (Dislike / Indiki)
-    4 = 💤 (Yatmak / Arakesme)
-    """
     return ReplyKeyboardMarkup(
         keyboard=[
             [KeyboardButton(text="❤️"), KeyboardButton(text="💌"), KeyboardButton(text="👎"), KeyboardButton(text="💤")]
@@ -56,4 +54,31 @@ def sleep_keyboard():
             [KeyboardButton(text="▶️ Täzeden gözleg")]
         ],
         resize_keyboard=True
+    )
+
+# ==================== MODERN ADMIN PANEL DÜWMELERI ====================
+
+def admin_main_keyboard():
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text="📊 Canly Statistika", callback_data="admin_stats"),
+                InlineKeyboardButton(text="📢 Hemmelere Hat (Rassylka)", callback_data="admin_broadcast"),
+            ],
+            [
+                InlineKeyboardButton(text="👥 Soňky Anketalar (Moderasiýa)", callback_data="admin_recent"),
+                InlineKeyboardButton(text="🚫 Ulanyjyny Banlamak", callback_data="admin_ban"),
+            ],
+            [
+                InlineKeyboardButton(text="⭐ VIP Status Bermek", callback_data="admin_vip"),
+                InlineKeyboardButton(text="🔄 Täzelemek", callback_data="admin_refresh"),
+            ]
+        ]
+    )
+
+def admin_cancel_keyboard():
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text="❌ Ýatyrmak", callback_data="admin_cancel")]
+        ]
     )
